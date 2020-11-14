@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Form = () => {
+  const [queryData, setQueryData] = useState({song: '', artist: ''})
+
+  const handleChange = e => {
+    setQueryData({
+      ...queryData,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <div className="bg-info">
       <div className="container">
@@ -12,13 +21,13 @@ const Form = () => {
                 <div className="col-md-6">
                   <div className="form-group">
                     <label>Artista</label>
-                    <input type="text" className="form-control" name="artist" placeholder="The Strokes" />
+                    <input type="text" className="form-control" name="artist" placeholder="The Strokes" value={queryData.artist} onChange={handleChange} />
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
                     <label>Canción</label>
-                    <input type="text" className="form-control" name="song" placeholder="Selfless" />
+                    <input type="text" className="form-control" name="song" placeholder="Selfless" value={queryData.song} onChange={handleChange} />
                   </div>
                 </div>
               </div>
