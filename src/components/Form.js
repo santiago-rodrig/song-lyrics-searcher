@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ setLyricsQuery }) => {
   const [queryData, setQueryData] = useState({song: '', artist: ''})
   const [error, setError] = useState(false)
 
@@ -21,6 +21,7 @@ const Form = () => {
     }
 
     setError(false)
+    setLyricsQuery(queryData)
   }
 
   return (
