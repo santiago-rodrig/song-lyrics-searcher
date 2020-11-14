@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Form = () => {
   const [queryData, setQueryData] = useState({song: '', artist: ''})
+  const [error, setError] = useState(false)
 
   const handleChange = e => {
     setQueryData({
@@ -10,11 +11,26 @@ const Form = () => {
     })
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    if (queryData.artist.trim() === '' || queryData.song.trim() === '') {
+      setError(true)
+
+      return
+    }
+
+    setError(false)
+  }
+
   return (
     <div className="bg-info">
       <div className="container">
-        <div className="row">
-          <form className="col card text-white bg-transparent mb-5 pt-5 pb-2">
+        <div className="row pt-4">
+          <div className="col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
+            { error ? <p className="alert alert-danger text-center p-2">Todos los campos son obligatorios</p> : null }
+          </div>
+          <form className="col-12 card text-white bg-transparent mb-5 pt-3 pb-2" onSubmit={handleSubmit}>
             <fieldset>
               <legend className="text-center">Buscador de Líricas</legend>
               <div className="row">
